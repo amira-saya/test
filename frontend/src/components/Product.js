@@ -2,9 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
-
 export default function Product(props) {
   const { product } = props;
+  const seller_id = 0;
+  const seller_name = ""
+  if( product && product.seller && product.seller._id){
+    seller_id =  product.seller.seller_id 
+    seller_name =   product.seller.name                                                                                                                                                 
+  }
   return (
     <div key={product._id} className="card">
       <Link to={`/product/${product._id}`}>
@@ -21,8 +26,8 @@ export default function Product(props) {
         <div className="row">
           <div className="price">{product.price}</div>
           <div>
-            <Link to={`/seller/${product.seller._id}`}>
-              {product.seller.seller.name}
+            <Link to={`/seller/${seller_id}`}>
+              { seller_name }
             </Link>
           </div>
         </div>

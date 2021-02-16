@@ -8,7 +8,7 @@ import Product from '../components/Product';
 import Rating from '../components/Rating';
 
 export default function SellerScreen(props) {
-  const sellerId = props.match.params._id;
+  const sellerId = props.match.params.id;
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
@@ -67,7 +67,7 @@ export default function SellerScreen(props) {
           <MessageBox variant="danger">{errorProducts}</MessageBox>
         ) : (
           <>
-            {products.length === 0 && <MessageBox>Aucun produit trouvé</MessageBox>}
+            {products.length === 0 && <MessageBox>No Product Found</MessageBox>}
             <div className="row center">
               {products.map((product) => (
                 <Product key={product._id} product={product}></Product>

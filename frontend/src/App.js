@@ -7,17 +7,18 @@ import PrivateRoute from './components/PrivateRoute';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
-//import OrderScreen from './Screens';
-
+import OrderScreen from './screens/OrderScreen';
+import PaymentMethodScreen from './screens/PaymentMethodScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductScreen from './screens/ProductScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import RegisterScreen from './screens/RegisterScreen';
-
+import ShippingAddressScreen from './screens/ShippingAdresseScreen';
 import SigninScreen from './screens/SigninScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
-import UserListScreen from './screens/UserListScreen';
+import UserListScreen from './screens/OrderListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
 import SellerScreen from './screens/SellerScreen';
@@ -26,7 +27,7 @@ import SearchScreen from './screens/SearchScreen';
 import { listProductCategories } from './actions/ProductActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
-//import MapScreen from './screens/MapScreen';
+import MapScreen from './screens/MapScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -61,7 +62,7 @@ function App() {
               <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
-             miraShop
+              MiraShop
             </Link>
           </div>
           <div>
@@ -73,7 +74,7 @@ function App() {
           </div>
           <div>
             <Link to="/cart">
-              Panier
+              Cart
               {cartItems.length > 0 && (
                 <span className="badge">{cartItems.length}</span>
               )}
@@ -85,32 +86,32 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/profile">Profile de l'utilisateur</Link>
+                    <Link to="/profile">User Profile</Link>
                   </li>
                   <li>
-                    <Link to="/orderhistory">Historique des commandes</Link>
+                    <Link to="/orderhistory">Order History</Link>
                   </li>
                   <li>
                     <Link to="#signout" onClick={signoutHandler}>
-                      Déconnexion
+                      Sign Out
                     </Link>
                   </li>
                 </ul>
               </div>
             ) : (
-              <Link to="/signin">Se connecter</Link>
+              <Link to="/signin">Sign In</Link>
             )}
             {userInfo && userInfo.isSeller && (
               <div className="dropdown">
                 <Link to="#admin">
-                  Vendeur <i className="fa fa-caret-down"></i>
+                  Seller <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/productlist/seller">Produits</Link>
+                    <Link to="/productlist/seller">Products</Link>
                   </li>
                   <li>
-                    <Link to="/orderlist/seller">Commandes</Link>
+                    <Link to="/orderlist/seller">Orders</Link>
                   </li>
                 </ul>
               </div>
@@ -122,16 +123,16 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/dashboard">Menu</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li>
-                    <Link to="/productlist">Produits</Link>
+                    <Link to="/productlist">Products</Link>
                   </li>
                   <li>
-                    <Link to="/orderlist">Commandes</Link>
+                    <Link to="/orderlist">Orders</Link>
                   </li>
                   <li>
-                    <Link to="/userlist">Utilisateur</Link>
+                    <Link to="/userlist">Users</Link>
                   </li>
                 </ul>
               </div>
@@ -141,7 +142,7 @@ function App() {
         <aside className={sidebarIsOpen ? 'open' : ''}>
           <ul className="categories">
             <li>
-              <strong>Catégories</strong>
+              <strong>Categories</strong>
               <button
                 onClick={() => setSidebarIsOpen(false)}
                 className="close-sidebar"
@@ -179,7 +180,10 @@ function App() {
           ></Route>
           <Route path="/signin" component={SigninScreen}></Route>
           <Route path="/register" component={RegisterScreen}></Route>
-          
+          <Route path="/shipping" component={ShippingAddressScreen}></Route>
+          <Route path="/payment" component={PaymentMethodScreen}></Route>
+          <Route path="/placeorder" component={PlaceOrderScreen}></Route>
+          <Route path="/order/:id" component={OrderScreen}></Route>
           <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
           <Route
             path="/search/name/:name?"
@@ -205,7 +209,7 @@ function App() {
             path="/profile"
             component={ProfileScreen}
           ></PrivateRoute>
-          
+          <PrivateRoute path="/map" component={MapScreen}></PrivateRoute>
           <AdminRoute
             path="/productlist"
             component={ProductListScreen}

@@ -9,7 +9,6 @@ import { listProducts } from '../actions/ProductActions';
 import { listTopSellers } from '../actions/UserActions';
 import { Link } from 'react-router-dom';
 
-
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
@@ -28,14 +27,14 @@ export default function HomeScreen() {
   }, [dispatch]);
   return (
     <div>
-      <h2>Best-Seller</h2>
+      <h2>Top Sellers</h2>
       {loadingSellers ? (
         <LoadingBox></LoadingBox>
       ) : errorSellers ? (
         <MessageBox variant="danger">{errorSellers}</MessageBox>
       ) : (
         <>
-          {sellers.length === 0 && <MessageBox>Aucun Vendeur Trouvé</MessageBox>}
+          {sellers.length === 0 && <MessageBox>No Seller Found</MessageBox>}
           <Carousel showArrows autoPlay showThumbs={false}>
             {sellers.map((seller) => (
               <div key={seller._id}>
@@ -48,14 +47,14 @@ export default function HomeScreen() {
           </Carousel>
         </>
       )}
-      <h2>Produits Populaires</h2>
+      <h2>Featured Products</h2>
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <>
-          {products.length === 0 && <MessageBox>Aucun Produit</MessageBox>}
+          {products.length === 0 && <MessageBox>No Product Found</MessageBox>}
           <div className="row center">
             {products.map((product) => (
               <Product key={product._id} product={product}></Product>

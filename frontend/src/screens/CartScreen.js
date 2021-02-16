@@ -23,15 +23,17 @@ export default function CartScreen(props) {
     dispatch(removeFromCart(id));
   };
 
- 
+  const checkoutHandler = () => {
+    props.history.push('/signin?redirect=shipping');
+  };
   return (
     <div className="row top">
       <div className="col-2">
-        <h1>Panier</h1>
+        <h1>Shopping Cart</h1>
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         {cartItems.length === 0 ? (
           <MessageBox>
-            Panier Vide <Link to="/">Go Shopping</Link>
+            Cart is empty. <Link to="/">Go Shopping</Link>
           </MessageBox>
         ) : (
           <ul>
@@ -64,13 +66,13 @@ export default function CartScreen(props) {
                       ))}
                     </select>
                   </div>
-                  <div>{item.price}</div>
+                  <div>${item.price}</div>
                   <div>
                     <button
                       type="button"
                       onClick={() => removeFromCartHandler(item.product)}
                     >
-                      Supprimer
+                      Delete
                     </button>
                   </div>
                 </div>
@@ -84,11 +86,20 @@ export default function CartScreen(props) {
           <ul>
             <li>
               <h2>
-                TOTAL ({cartItems.reduce((a, c) => a + c.qty, 0)} articles) : 
+                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </h2>
             </li>
-            
+            <li>
+              <button
+                type="button"
+                onClick={checkoutHandler}
+                className="primary block"
+                disabled={cartItems.length === 0}
+              >
+                Proceed to Checkout
+              </button>
+            </li>
           </ul>
         </div>
       </div>

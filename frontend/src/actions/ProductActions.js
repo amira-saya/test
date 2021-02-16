@@ -24,7 +24,6 @@ import {
   PRODUCT_REVIEW_CREATE_FAIL,
 } from '../constants/ProductConstants';
 
-
 export const listProducts = ({
   pageNumber = '',
   seller = '',
@@ -124,7 +123,7 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const {data}  = await Axios.delete(`/api/products/${productId}`, {
+    const { data } = Axios.delete(`/api/products/${productId}`, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
@@ -145,7 +144,7 @@ export const createReview = (productId, review) => async (
     userSignin: { userInfo },
   } = getState();
   try {
-    const {data} = await Axios.post(
+    const { data } = await Axios.post(
       `/api/products/${productId}/reviews`,
       review,
       {
