@@ -4,11 +4,11 @@ import Rating from './Rating';
 
 export default function Product(props) {
   const { product } = props;
-  const seller_id = 0;
-  const seller_name = ""
+let seller_id = "";
+  let seller_name = ""
   if( product && product.seller && product.seller._id){
-    seller_id =  product.seller.seller_id 
-    seller_name =   product.seller.name                                                                                                                                                 
+     seller_id =  product.seller.seller_id
+     seller_name =   product.seller.name                                                                                                                                     
   }
   return (
     <div key={product._id} className="card">

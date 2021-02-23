@@ -136,7 +136,7 @@ export default function OrderScreen(props) {
                         </div>
 
                         <div>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x {item.price} = {item.qty * item.price}
                         </div>
                       </div>
                     </li>
@@ -155,28 +155,28 @@ export default function OrderScreen(props) {
               <li>
                 <div className="row">
                   <div>Items</div>
-                  <div>${order.itemsPrice.toFixed(2)}</div>
+                  <div>{order.itemsPrice.toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>Shipping</div>
-                  <div>${order.shippingPrice.toFixed(2)}</div>
+                  <div>DT{order.shippingPrice.toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>Tax</div>
-                  <div>${order.taxPrice.toFixed(2)}</div>
+                  <div>DT{order.taxPrice.toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>
-                    <strong> Order Total</strong>
+                    <strong>  Total</strong>
                   </div>
                   <div>
-                    <strong>${order.totalPrice.toFixed(2)}</strong>
+                    <strong>{order.totalPrice.toFixed(2)}</strong>
                   </div>
                 </div>
               </li>

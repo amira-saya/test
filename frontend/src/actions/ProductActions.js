@@ -93,7 +93,7 @@ export const createProduct = () => async (dispatch, getState) => {
     });
   } catch (error) {
     const message =
-      error.response && error.response.data.message
+      error.response && error.response.data.messagenull
         ? error.response.data.message
         : error.message;
     dispatch({ type: PRODUCT_CREATE_FAIL, payload: message });
@@ -120,7 +120,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 export const deleteProduct = (productId) => async (dispatch, getState) => {
   dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
   const {
-    userSignin: { userInfo },
+    userSignin: { userInfo }
   } = getState();
   try {
     const { data } = Axios.delete(`/api/products/${productId}`, {
