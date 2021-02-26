@@ -1,4 +1,0 @@
-{
-    "mongoUri":"mongodb+srv://amira:azerty@cluster0.jljxp.mongodb.net/users_db?retryWrites=true&w=majority",
-    "secretOrKey": "Mysecret"
-}
