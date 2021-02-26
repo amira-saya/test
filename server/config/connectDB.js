@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 // const config = require("config");
 const fs = require('fs')
-let data_static = fs.readFileSync('default.json')
+let data_static = fs.readFileSync('./default.json')
 let config = JSON.parse(data_static)
 
 const mongoUri = process.env.MONGODB_URI || config[mongoUri]
